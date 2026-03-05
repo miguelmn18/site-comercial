@@ -1,0 +1,623 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  color: #a855f7;
+}
+
+/* ================= DROPDOWN CONTATO ================= */
+
+.has-submenu {
+  position: relative;
+  cursor: pointer;
+}
+
+.submenu {
+  position: absolute;
+  top: 140%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+
+  background: rgba(20, 20, 40, 0.95);
+  backdrop-filter: blur(18px);
+
+  padding: 15px;
+  border-radius: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all 0.25s ease;
+  z-index: 999;
+}
+
+.has-submenu.active .submenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+
+.submenu .btn {
+  background: linear-gradient(135deg, #7b2ff7, #f107a3);
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.submenu .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= SEÇÕES ================= */
+
+section {
+  padding: 120px 8%;
+  text-align: center;
+}
+
+.apresentacao h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.apresentacao p {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #d1d1d1;
+}
+
+/* ================= IMAGENS DEMONSTRAÇÃO ================= */
+
+/* ================= SEÇÃO RESULTADOS ================= */
+.imagem-demonstracao {
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #0f0f1b, #14142a);
+}
+
+.titulo-imagem {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #8a5cff, #00c3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= GRID DAS EMPRESAS ================= */
+.empresas-grid {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 40px;
+}
+
+/* ================= CARD EMPRESA ================= */
+.empresa-card {
+  background: rgba(25, 25, 45, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.4s ease;
+}
+
+.empresa-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(138, 92, 255, 0.2);
+}
+
+.empresa-card h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ================= CONTAINER DOS GRÁFICOS ================= */
+.graficos-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* Quando só tiver 1 gráfico (empresa 3) */
+.graficos-linha:has(.grafico-box:only-child) {
+  grid-template-columns: 1fr;
+}
+
+/* ================= BOX INDIVIDUAL ================= */
+.grafico-box {
+  background: rgba(18, 18, 35, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: 320px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.grafico-box:hover {
+  box-shadow: 0 15px 35px rgba(0, 195, 255, 0.15);
+}
+
+.grafico-box h4 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #ccc;
+}
+
+/* Canvas ocupa todo espaço */
+.grafico-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 900px) {
+  .graficos-linha {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ================= CARROSSEL ESTILO QUADRO ================= */
+
+.carrossel-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* TEXTO */
+.texto-carrosel {
+  flex: 1;
+  text-align: left;
+}
+
+.texto-carrosel h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.texto-carrosel p {
+  max-width: 420px;
+  color: #d1d1d1;
+  line-height: 1.6;
+}
+
+
+/* ================= CAROUSEL ================= */
+.carousel {
+  flex: 0 0 clamp(480px, 50vw, 700px); /* largura maior e responsiva */
+  aspect-ratio: 15/20;
+  height: clamp(320px, 40vw, 450px);   /* altura maior e proporcional */
+  margin: 0 auto;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(168, 85, 247, 0.35);
+
+  padding: 12px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+
+
+/* ================= CONTAINER INTERNO ================= */
+
+
+.imagens {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* 👈 ESSA É A CHAVE */
+  justify-content: center; /* centraliza vertical */
+  align-items: center;     /* centraliza horizontal */
+  text-align: center;
+}
+
+
+
+/* Carrossel não precisa de flex */
+.carousel {
+  position: relative;
+}
+
+/* Tela de celular */
+.carousel-viewport {
+  position: relative;
+  width: 280px;
+  height: 560px;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  background: #000;
+  
+}
+
+/* Track */
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  height: 100%;
+}
+
+.carousel-track video {
+  pointer-events: none;
+}
+
+/* Slides */
+.carousel-track img,
+.carousel-track video {
+  width: 280px;
+  height: 560px;
+  object-fit: cover;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  background: rgba(69, 25, 110, 0.6);
+  color: white;
+  border: none;
+  font-size: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999; /* FORÇA FICAR POR CIMA */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn-prev {
+  left: 8px;
+}
+
+.carousel-btn-next {
+  right: 8px;
+}
+/* ================= VÍDEO ================= */
+
+.carousel-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 50px;
+  padding: 100px 8%;
+}
+
+.carousel-container {
+  flex: 1;
+}
+
+.video-slide video {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.description-box {
+  flex: 1;
+  text-align: left;
+}
+
+.description-box h2 {
+  margin-bottom: 20px;
+}
+
+.description-box p {
+  color: #d1d1d1;
+  line-height: 1.7;
+}
+
+/* ================= FOOTER ================= */
+
+.rodape-site {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 60px 8%;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.footer-title {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-col p,
+.social-links a {
+  color: #ccc;
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #a855f7;
+}
+
+.footer-copy {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* ================== SEÇÃO GESTORES ================== */
+.gestores {
+  padding: 80px 20px;
+  text-align: center;
+  background: #0f172a; /* pode alterar para cor do seu site */
+}
+
+.gestores h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+/* Container das imagens */
+.apresentacao-gestores {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* ================== SEÇÃO GESTORES ================== */
+.gestores {
+  padding: 100px 20px;
+  background: #0f172a;
+  text-align: center;
+}
+
+.titulo-gestores {
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+
+/* Container dos cards */
+.cards-gestores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+/* Card individual */
+.gestor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Imagens */
+.gestor img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(225, 0, 255, 0.5);
+}
+
+/* Hover */
+.gestor img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 35px rgb(191, 0, 255);
+}
+
+/* Clique */
+.gestor img:active {
+  transform: scale(0.95);
+}
+
+/* Nome abaixo */
+.gestor h3 {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+
+/* ================= RESULTADOS PREMIUM ================= */
+
+.imagem-demonstracao {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.titulo-imagem {
+  text-align: center;
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+}
+
+.empresas-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.empresa-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0, 255, 200, 0.15);
+  transition: 0.3s ease;
+}
+
+.empresa-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 40px rgba(0, 255, 200, 0.3);
+}
+
+.empresa-card h3 {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 1.6rem;
+}
+
+.graficos-linha {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.grafico-box {
+  flex: 1;
+  min-width: 300px;
+}
+
+.grafico-box h4 {
+  color: #00ffd5;
+  margin-bottom: 15px;
+}
+
+/* Telas muito pequenas */
+@media (max-width: 480px) {
+  .empresa-card {
+    border-radius: 15px;
+  }
+
+  .grafico-box {
+    min-height: 200px;
+  }
+}
+
+/* Telas muito grandes */
+@media (min-width: 1600px) {
+  .empresas-grid {
+    max-width: 1600px;
+  }
+}
+/* ================= RESPONSIVO ================= */
+
+@media (max-width: 900px) {
+  .carousel-wrapper {
+    flex-direction: column;
+  }
+
+  .description-box {
+    text-align: center;
+  }
+
+  .menu {
+    gap: 15px;
+  }
+
+  .carrossel-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .texto-carrosel {
+    text-align: center;
+  }
+
+  .carousel {
+    width: 100%;
+    max-width: 420px;
+    height: 250px;
+  }
+}
